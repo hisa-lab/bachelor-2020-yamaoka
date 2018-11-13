@@ -15,5 +15,22 @@
         "*.bbl": true,
         "*.fdb_latexmk": true,
         "*.lof": true
-    }
+    },
+    "latex-workshop.latex.recipes": [
+      {
+        "name": "latexmk",
+        "tools": [
+          "latexmk"
+        ]
+      },
+    ],
+    "latex-workshop.latex.tools": [
+      {
+        "name": "latexmk",
+        "command": "latexmk",
+        "args": [
+          "paper.tex"
+        ]
+      },
+    ]
 }
