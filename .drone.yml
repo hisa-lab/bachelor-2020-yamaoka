@@ -48,22 +48,43 @@ steps:
       - tag
       status:
       - success
-  - name: slack
+  - name: slack release
     image: plugins/slack
-    webhook: https://hooks.slack.com/services/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    
+    settings:
+      channel: build-log
+      webhook: 
+        from_secret: slack_webhook
+      template: >
+        {{#success build.status}}
+          {{repo.owner}}/{{repo.name}} build {{build.number}} succeeded.
+          release to https://github.com/{{repo.owner}}/{{repo.name}}/releases/download/{{build.tag}}/paper.pdf
+          {{build.link}}
+        {{else}}
+          build {{build.number}} failed.
+          {{build.link}}
+        {{/success}}
     when:
       event:
-      - push
       - tag
       status:
       - success
-    channel: bachelor-thesis-log
-    template: >
-      {{#success build.status}}
-        {{repo.owner}}/{{repo.name}} build {{build.number}} succeeded.
-        https://github.com/{{repo.owner}}/{{repo.name}}/blob/pdf/paper.pdf
-        {{build.link}}
-      {{else}}
-        build {{build.number}} failed.
-        {{build.link}}
-      {{/success}}
+  - name: slack
+    image: plugins/slack
+    settings:
+      channel: build-log
+      webhook: 
+        from_secret: slack_webhook
+      template: >
+        {{#success build.status}}
+          {{repo.owner}}/{{repo.name}} build {{build.number}} succeeded.
+          push to https://github.com/{{repo.owner}}/{{repo.name}}/blob/pdf/paper.pdf
+          {{build.link}}
+        {{else}}
+          build {{build.number}} failed.
+          {{build.link}}
+        {{/success}}
+    when:
+      event:
+      - push
+      status:
+      - success
