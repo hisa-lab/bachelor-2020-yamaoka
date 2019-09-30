@@ -1,14 +1,25 @@
-pipeline:
-  build:
-    image: paperist/alpine-texlive-ja
+---
+kind: pipeline
+type: docker
+name: default
+
+trigger:
+  event:
+  - push
+  - tag
+
+steps:
+  - name: latex build
+    image: nxzz/alpine-texlive-ja
     commands:
-      - tlmgr update --self
-      - tlmgr install ulem
       - latexmk paper.tex
     when:
-        branch: master
-        status: success
-  github_orphan:
+      event:
+      - push
+      - tag
+      status:
+      - success
+  - name: github orphan
     image: bravissimolabs/alpine-git
     commands:
       - mv ./paper.pdf /tmp/paper.pdf
@@ -21,13 +32,31 @@ pipeline:
       - git commit -m "latest pdf"
       - git push -f origin pdf
     when:
-        branch: master
-        status: success
-  slack:
-    image: plugins/slack
-    webhook: https://hooks.slack.com/services/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
+      event:
+      - push
+      - tag
+      status:
+      - success
+  - name: github release
+    image: plugins/github-release
+    settings:
+      api_key:
+        from_secret: github_token
+      files: ./paper.pdf
     when:
-      status: [ success, failure ]
+      event:
+      - tag
+      status:
+      - success
+  - name: slack
+    image: plugins/slack
+    webhook: https://hooks.slack.com/services/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    
+    when:
+      event:
+      - push
+      - tag
+      status:
+      - success
     channel: bachelor-thesis-log
     template: >
       {{#success build.status}}
