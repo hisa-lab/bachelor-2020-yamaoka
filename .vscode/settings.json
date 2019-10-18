@@ -27,7 +27,7 @@
       {
           "command": "latexmk",
           "args": [
-              "kunimoto.tex"
+              "paper.tex"
           ],
           "name": "Step 1: latexmk"
       },
