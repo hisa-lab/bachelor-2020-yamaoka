@@ -1,4 +1,4 @@
-卒論のひな形2019
+卒論のひな形2020
 ====
 
 卒論のひな形
@@ -40,8 +40,5 @@
 
 
 # CI 設定
-* タグをつけると、その時のビルド結果 `paper.pdf` をリリースするようにしている
-  * 使う場合は、Drone の Secrets と追加すること
-  * `github_token` として Github の Personal access tokens を設定する
-  * リポジトリの読み書きを許可すること
-* Slack連動を利用する場合は、Drone の Secrets に `slack_webhook` として、Webhook URL を追加すること
+* Pushすると、その時のビルド結果 `paper.pdf` をリリースするようにしている
+* Slack連動を利用する場合は、Setting の Secrets に `slack_webhook` として、Webhook URL を追加すること
