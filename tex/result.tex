@@ -1,25 +1,33 @@
 \chapter{計測結果}
 \label{cha:result}
-計測結果を書く
 \section{フィボナッチ数列}
-ｎ番目フィボナッチ数を求めるプログラムの実行速度をそれぞれ20回ずつ測定した。
+ｎ番目のフィボナッチ数を求めるプログラムの実行速度をそれぞれ20回ずつ測定した。
 計20回の結果の平均は図\ref{fig:f-average}となった。
 また、計20回の結果の分散は図\ref{fig:f-dispersion}となった。
+図\ref{fig:f-dispersion}をから分散は非常に小さいことが読み取れる。
 どのスクリプト言語も導出するフィボナッチ数が大きくなるほど実行時間が伸びる傾向にある。
-
-\insertfigpng{f-average}{フィボナッチ数列 平均}
-図\ref{fig:f-dispersion}
-\insertfigpng{f-dispersion}{フィボナッチ数列 分散}
+図\ref{fig:f-average}を見ると導出するフィボナッチ数が20回までの間はrubyが最も早く動作することがわかった。
+しかし、導出するフィボナッチ数が増加するのに伴って、node.jsの処理速度の速さが目立つようになった。
+また、40個目のフィボナッチ数を求めるのが最も遅かったのはPython3で約30秒という結果になった。
 
 \section{円周率の算出}
-図\ref{fig:p-average}
-\insertfigpng{p-average}{円周率の算出 平均}
-図\ref{fig:p-dispersion}
-\insertfigpng{p-dispersion}{円周率の算出 分散}
-
+ライプニッツ級数を使った円周率を求めるプログラムの実行速度をそれぞれ20回ずつ測定した。
+どのスクリプト言語も導出した円周率に差異はないが、プログラムの実行時間に差があった。
+計20回の結果の平均は図\ref{fig:p-average}となった。
+また、計20回の結果の分散は図\ref{fig:p-dispersion}となった。
+図\ref{fig:p-dispersion}をから分散は非常に小さいことが読み取れる。
+フィボナッチ数列の結果とは違い、実行した回数に限らずPHPが最も早く処理をすることができた。
+また今回の測定ではpython3は最も遅く、PHPの約200倍の時間がかかったことがわかる。
 
 \section{正規表現}
-図\ref{fig:s-average}
+結果について書く
+
+\clearpage
+\insertfigpng{f-average}{フィボナッチ数列 平均}
+\insertfigpng{f-dispersion}{フィボナッチ数列 分散}
+\clearpage
+\insertfigpng{p-average}{円周率の算出 平均}
+\insertfigpng{p-dispersion}{円周率の算出 分散}
+\clearpage
 \insertfigpng{s-average}{正規表現 平均}
-図\ref{fig:s-dispersion}
 \insertfigpng{s-dispersion}{正規表現 分散}
