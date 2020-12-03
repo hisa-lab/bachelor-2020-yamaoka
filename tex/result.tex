@@ -20,14 +20,59 @@
 また今回の測定ではpython3は最も遅く、PHPの約200倍の時間がかかったことがわかる。
 
 \section{正規表現}
-結果について書く
+正規表現を使ったURLを検出するプログラムの実行速度をそれぞれ20回ずつ測定した。
+どのスクリプトも同じようにURLを検出した。それぞれのプログラムの実行時間に差があった。
+計20回の結果の平均は図\ref{fig:s-average}となった。
+また、計20回の結果の分散は図\ref{fig:s-dispersion}となった。
+図\ref{fig:s-dispersion}をから分散は非常に小さいことが読み取れる。
+図\ref{fig:s-dispersion}からnode.jsとPHPが非常に高速であることが読み取れる。
+また、Python3も十分に速くフィボナッチとや円周率よりと比べると良い結果になっていることがわかる。
+今回計測した中で最も遅かったのはrubyの約23秒だった。
+
 
 \clearpage
-\insertfigpng{f-average}{フィボナッチ数列 平均}
-\insertfigpng{f-dispersion}{フィボナッチ数列 分散}
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=14.5cm,keepaspectratio]{figure/f-average.PNG}
+    \caption{フィボナッチ数列 平均}
+    \label{fig:f-average}
+\end{figure}
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=14.5cm,keepaspectratio]{figure/f-dispersion.PNG}
+    \caption{フィボナッチ数列 分散}
+    \label{fig:f-dispersion}
+\end{figure}
+
 \clearpage
-\insertfigpng{p-average}{円周率の算出 平均}
-\insertfigpng{p-dispersion}{円周率の算出 分散}
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=14.5cm,keepaspectratio]{figure/p-average.PNG}
+    \caption{円周率の算出 平均}
+    \label{fig:p-average}
+\end{figure}
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=14.5cm,keepaspectratio]{figure/p-dispersion.PNG}
+    \caption{円周率の算出 分散}
+    \label{fig:p-dispersion}
+\end{figure}
+
 \clearpage
-\insertfigpng{s-average}{正規表現 平均}
-\insertfigpng{s-dispersion}{正規表現 分散}
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=14.5cm,keepaspectratio]{figure/s-average.PNG}
+    \caption{正規表現 平均}
+    \label{fig:s-average}
+\end{figure}
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=14.5cm,keepaspectratio]{figure/s-dispersion.PNG}
+    \caption{正規表現 分散}
+    \label{fig:s-dispersion}
+\end{figure}
