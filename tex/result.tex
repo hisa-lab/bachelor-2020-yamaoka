@@ -3,101 +3,171 @@
 計測はbashのtimeコマンドを使用した。また、\cite{bash}を参考にシェルスクリプトを使用して計測の自動化を行った。また、以下の計測の時間単位は(s)である。
 \section{バブルソート}
 ｎ個の数字をソートするバブルソートの実行速度をそれぞれ20回ずつ測定した。
-計20回の結果の平均は図\ref{fig:b-average}となった。
-また、計20回の結果の分散は図\ref{fig:f-dispersion}となった。
-図\ref{fig:b-dispersion}をから分散は非常に小さいことが読み取れる。
-図\ref{fig:b-average}を見ると最も早くソートができたのはnode.jsであることがわかる。
+計20回の結果の平均は表\ref{table:b-average}となった。
+また、計20回の結果の分散は表\ref{table:f-dispersion}となった。
+表\ref{table:b-dispersion}をから分散は非常に小さいことが読み取れる。
+表\ref{table:b-average}を見ると最も早くソートができたのはnode.jsであることがわかる。
 また、rubyは最も遅くnode.jsに比べると約二倍遅い。
 ソートする数字の量が少ないうちはどのプログラムも非常に処理が速いが、処理する数が多くなるにつれて顕著な差が見られた。
 
 \section{フィボナッチ数列}
 ｎ番目のフィボナッチ数を求めるプログラムの実行速度をそれぞれ20回ずつ測定した。
-計20回の結果の平均は図\ref{fig:f-average}となった。
-また、計20回の結果の分散は図\ref{fig:f-dispersion}となった。
-図\ref{fig:f-dispersion}をから分散は非常に小さいことが読み取れる。
+計20回の結果の平均は表\ref{table:f-average}となった。
+また、計20回の結果の分散は表\ref{table:f-dispersion}となった。
+表\ref{table:f-dispersion}をから分散は非常に小さいことが読み取れる。
 どのスクリプト言語も導出するフィボナッチ数が大きくなるほど実行時間が伸びる傾向にある。
-図\ref{fig:f-average}を見ると導出するフィボナッチ数が20回までの間はrubyが最も早く動作することがわかった。
+表\ref{table:f-average}を見ると導出するフィボナッチ数が20回までの間はrubyが最も早く動作することがわかった。
 しかし、導出するフィボナッチ数が増加するのに伴って、node.jsの処理速度の速さが目立つようになった。
 また、40個目のフィボナッチ数を求めるのが最も遅かったのはPython3で約30秒という結果になった。
 
-\clearpage
+
 \section{円周率の算出}
 ライプニッツ級数を使った円周率を求めるプログラムの実行速度をそれぞれ20回ずつ測定した。
 どのスクリプト言語も導出した円周率に差異はないが、プログラムの実行時間に差があった。
-計20回の結果の平均は図\ref{fig:p-average}となった。
-また、計20回の結果の分散は図\ref{fig:p-dispersion}となった。
-図\ref{fig:p-dispersion}をから分散は非常に小さいことが読み取れる。
+計20回の結果の平均は表\ref{table:p-average}となった。
+また、計20回の結果の分散は表\ref{table:p-dispersion}となった。
+表\ref{table:p-dispersion}をから分散は非常に小さいことが読み取れる。
 フィボナッチ数列の結果とは違い、実行した回数に限らずPHPが最も早く処理をすることができた。
 また今回の測定ではpython3は最も遅く、PHPの約200倍の時間がかかったことがわかる。
 
 \section{正規表現}
 正規表現を使ったURLを検出するプログラムの実行速度をそれぞれ20回ずつ測定した。
 どのスクリプトも同じようにURLを検出した。それぞれのプログラムの実行時間に差があった。
-計20回の結果の平均は図\ref{fig:s-average}となった。
-また、計20回の結果の分散は図\ref{fig:s-dispersion}となった。
-図\ref{fig:s-dispersion}をから分散は非常に小さいことが読み取れる。
-図\ref{fig:s-dispersion}からnode.jsとPHPが非常に高速であることが読み取れる。
+計20回の結果の平均は表\ref{table:s-average}となった。
+また、計20回の結果の分散は表\ref{table:s-dispersion}となった。
+表\ref{table:s-dispersion}から分散は非常に小さいことが読み取れる。
+表\ref{table:s-dispersion}からnode.jsとPHPが非常に高速であることが読み取れる。
 また、Python3も十分に速くフィボナッチとや円周率よりと比べると良い結果になっていることがわかる。
 今回計測した中で最も遅かったのはrubyの約23秒だった。
 
 \clearpage
-\begin{figure}[tb]
-    \centering
-    \includegraphics[width=14.5cm,keepaspectratio]{figure/b-average.PNG}
-    \caption{バブルソート 平均}
-    \label{fig:b-average}
-\end{figure}
+\begin{table}[tb]
+\centering
+\begin{tabular}{|c||c|c|c|c|}
+\hline
+ソートした量&Python3&PHP&node.js&ruby\\ \hline
+100	    &0.018	&0.009	&0.276	&0.030\\ \hline
+1000	&0.018	&0.010	&0.284	&0.030\\ \hline
+10000	&0.076	&0.043	&0.345	&0.054\\ \hline
+100000	&5.934	&3.148	&7.329	&0.030\\ \hline
+\end{tabular}
+\caption{バブルソート 平均}
+\label{table:b-average}
+\end{table}
 
-\begin{figure}[tb]
-    \centering
-    \includegraphics[width=14.5cm,keepaspectratio]{figure/b-dispersion.PNG}
-    \caption{バブルソート 分散}
-    \label{fig:b-dispersion}
-\end{figure}
-
-\clearpage
-\begin{figure}[tb]
-    \centering
-    \includegraphics[width=14.5cm,keepaspectratio]{figure/f-average.PNG}
-    \caption{フィボナッチ数列 平均}
-    \label{fig:f-average}
-\end{figure}
-
-\begin{figure}[tb]
-    \centering
-    \includegraphics[width=14.5cm,keepaspectratio]{figure/f-dispersion.PNG}
-    \caption{フィボナッチ数列 分散}
-    \label{fig:f-dispersion}
-\end{figure}
-
-\clearpage
-
-\begin{figure}[tb]
-    \centering
-    \includegraphics[width=14.5cm,keepaspectratio]{figure/p-average.PNG}
-    \caption{円周率の算出 平均}
-    \label{fig:p-average}
-\end{figure}
-
-\begin{figure}[tb]
-    \centering
-    \includegraphics[width=14.5cm,keepaspectratio]{figure/p-dispersion.PNG}
-    \caption{円周率の算出 分散}
-    \label{fig:p-dispersion}
-\end{figure}
+\begin{table}[tb]
+\centering
+\begin{tabular}{|c||c|c|c|c|}
+\hline
+ソートした量&Python3&PHP&ruby&node.js\\ \hline
+100     &1.42E-06	&0.00E+00	&2.52E-05	&4.11E-07\\ \hline
+1000	&2.39E-07	&2.61E-07	&2.73E-05	&3.24E-05\\ \hline
+10000	&8.92E-07	&2.53E-07	&2.28E-05	&3.24E-05\\ \hline
+100000	&5.78E-06	&7.87E-07	&2.08E-02	&4.27E-06\\ \hline
+\end{tabular}
+\caption{バブルソート 分散}
+\label{table:b-dispersion}
+\end{table}
 
 \clearpage
+\begin{table}[tb]
+\centering
+\begin{tabular}{|c||c|c|c|c|}
+\hline
 
-\begin{figure}[tb]
-    \centering
-    \includegraphics[width=14.5cm,keepaspectratio]{figure/s-average.PNG}
-    \caption{正規表現 平均}
-    \label{fig:s-average}
-\end{figure}
+n番目	&python3	&php	&ruby	&node.js\\ \hline
+1	&0.018	&0.274	&0.010	&0.038\\ \hline
+5	&0.018	&0.272	&0.009	&0.028\\ \hline
+10	&0.018	&0.270	&0.009	&0.028\\ \hline
+15	&0.018	&0.274	&0.009	&0.028\\ \hline
+20	&0.020	&0.274	&0.010	&0.031\\ \hline
+25	&0.040	&0.280	&0.016	&0.030\\ \hline
+30	&0.264	&0.371	&0.088	&0.040\\ \hline
+35	&2.808	&1.302	&0.880	&0.145\\ \hline
+40	&30.599	&11.947	&9.171	&0.149\\ \hline
 
-\begin{figure}[tb]
-    \centering
-    \includegraphics[width=14.5cm,keepaspectratio]{figure/s-dispersion.PNG}
-    \caption{正規表現 分散}
-    \label{fig:s-dispersion}
-\end{figure}
+\end{tabular}
+\caption{フィボナッチ数列 平均}
+\label{table:f-average}
+\end{table}
+
+\begin{table}[tb]
+\centering
+\begin{tabular}{|c||c|c|c|c|}
+\hline
+
+n番目	&python3	&php	&ruby	&node.js\\ \hline
+1	&4.08E-07	&2.87E-05	&3.66E-07	&1.92E-03\\ \hline
+5	&3.58E-07	&4.49E-05	&1.97E-07	&3.45E-07\\ \hline
+10	&2.39E-07	&3.41E-05	&1.97E-07	&2.74E-07\\ \hline
+15	&1.55E-07	&4.00E-04	&2.61E-07	&2.39E-07\\ \hline
+20	&3.03E-07	&3.01E-04	&1.34E-07	&2.80E-05\\ \hline
+25	&2.53E-07	&5.71E-05	&2.21E-07	&3.79E-07\\ \hline
+30	&4.22E-06	&1.04E-04	&1.04E-06	&6.42E-07\\ \hline
+35	&1.64E-03	&8.70E-04	&4.02E-04	&1.19E-06\\ \hline
+40	&1.96E-01	&1.79E-01	&4.20E-02	&2.83E-06\\ \hline
+
+\end{tabular}
+\caption{フィボナッチ数列 分散}
+\label{table:f-dispersion}
+\end{table}
+
+\clearpage
+
+\begin{table}[tb]
+\centering
+\begin{tabular}{|c||c|c|c|c|}
+\hline
+ソートした量&Python3&PHP&ruby&node.js\\ \hline
+100     &1.42E-06	&0.00E+00	&2.52E-05	&4.11E-07\\ \hline
+1000	&2.39E-07	&2.61E-07	&2.73E-05	&3.24E-05\\ \hline
+10000	&8.92E-07	&2.53E-07	&2.28E-05	&3.24E-05\\ \hline
+100000	&5.78E-06	&7.87E-07	&2.08E-02	&4.27E-06\\ \hline
+\end{tabular}
+\caption{円周率の算出 平均}
+\label{table:p-average}
+\end{table}
+
+\begin{table}[tb]
+\centering
+\begin{tabular}{|c||c|c|c|c|}
+\hline
+ソートした量&Python3&PHP&ruby&node.js\\ \hline
+100     &1.42E-06	&0.00E+00	&2.52E-05	&4.11E-07\\ \hline
+1000	&2.39E-07	&2.61E-07	&2.73E-05	&3.24E-05\\ \hline
+10000	&8.92E-07	&2.53E-07	&2.28E-05	&3.24E-05\\ \hline
+100000	&5.78E-06	&7.87E-07	&2.08E-02	&4.27E-06\\ \hline
+\end{tabular}
+\caption{円周率の算出 分散}
+\label{table:p-dispersion}
+\end{table}
+
+\clearpage
+
+\begin{table}[tb]
+\centering
+\begin{tabular}{|c||c|c|c|c|}
+\hline
+ソートした量&Python3&PHP&ruby&node.js\\ \hline
+100     &1.42E-06	&0.00E+00	&2.52E-05	&4.11E-07\\ \hline
+1000	&2.39E-07	&2.61E-07	&2.73E-05	&3.24E-05\\ \hline
+10000	&8.92E-07	&2.53E-07	&2.28E-05	&3.24E-05\\ \hline
+100000	&5.78E-06	&7.87E-07	&2.08E-02	&4.27E-06\\ \hline
+\end{tabular}
+\caption{正規表現 平均}
+\label{table:s-average}
+\end{table}
+
+\begin{table}[tb]
+\centering
+\begin{tabular}{|c||c|c|c|c|}
+\hline
+ソートした量&Python3&PHP&ruby&node.js\\ \hline
+100     &1.42E-06	&0.00E+00	&2.52E-05	&4.11E-07\\ \hline
+1000	&2.39E-07	&2.61E-07	&2.73E-05	&3.24E-05\\ \hline
+10000	&8.92E-07	&2.53E-07	&2.28E-05	&3.24E-05\\ \hline
+100000	&5.78E-06	&7.87E-07	&2.08E-02	&4.27E-06\\ \hline
+\end{tabular}
+\caption{正規表現 分散}
+\label{table:s-dispersion}
+\end{table}
