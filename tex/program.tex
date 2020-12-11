@@ -74,6 +74,15 @@ Python3で実装したものを図\ref{fig:s-py}に示す。
 また、PHPで書かれたプログラム図\ref{fig:s-php}ではpreg-match関数が使われている。
 これらの関数は結果としては同じふるまいをする関数だが、言語ごとに実行速度が異なる結果になることが予想できた。
 
+\begin{lstlisting}[label={prg:gst}, caption={GStreamer コマンドライン}, basicstyle=\ttfamily\footnotesize, frame=single]
+gst-launch-1.0 -v rtmpsrc location=rtmp://localhost/live/live \
+! flvdemux ! h264parse ! decodebin ! videoscale add-borders=true \
+! video/x-raw,width=888,height=480 \
+! x264enc bitrate=900 speed-preset=1 tune=zerolatency \
+! rtph264pay config-interval=-1 pt={pt} \
+! udpsink host=127.0.0.1 port={port}
+\end{lstlisting}
+
 \begin{figure}[tb]
     \centering
     \includegraphics[width=13.5cm,keepaspectratio]{figure/b-rb.PNG}
