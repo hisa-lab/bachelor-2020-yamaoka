@@ -100,105 +100,43 @@ fib() の引数が 0 か 1 になるまで引数に指定される値を 1 ず�
 この図を見ると、PHP では preg-match 関数が用いられている事が分かる。。
 これらの関数は結果としては同じ振る舞いをするが、スクリプト言語ごとに実行速度が異なる結果になる事が予想される。
 
-\clearpage
-\begin{lstlisting}[label={fig:b-rb}, caption={Python3 バブルソート}, basicstyle=\ttfamily\footnotesize, frame=single]
-def Sort(a):
-    for i in range(len(a)):
-        for j in range(len(a)-1, i, -1):
-            if a[j] < a[j-1]:
-                a[j], a[j-1] = a[j-1], a[j]
-    return a
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=13.5cm,keepaspectratio]{figure/b-rb.PNG}
+    \caption{Python3 バブルソート}
+    \label{fig:b-rb}
+\end{figure}
 
-f=open('random_number.txt', 'r')
-datalist=list(map(int,f.read().split()))
-f.close
-g = open('number-py.txt', 'w')
-l=Sort(datalist)
-for line in l:
-    g.write(str(line)+" ")
-g.close()
-\end{lstlisting}
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=13.5cm,keepaspectratio]{figure/f-py.PNG}
+    \caption{Python3 フィボナッチ数列}
+    \label{fig:f-py}
+\end{figure}
 
-\begin{lstlisting}[label={fig:f-py}, caption={Python3 フィボナッチ数列}, basicstyle=\ttfamily\footnotesize, frame=single]
-import sys
-n=int(sys.argv[1])
-def fib(n):
-	print(n)
-	if n == 0 or n == 1:
-		return n
-	else :
-		return fib(n-2)+fib(n-1)
-fib(n)
-\end{lstlisting}
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=13.5cm,keepaspectratio]{figure/p-py.PNG}
+    \caption{Python3 円周率の算出}
+    \label{fig:p-py}
+\end{figure}
 
-\clearpage
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=13.5cm,keepaspectratio]{figure/p-php.PNG}
+    \caption{PHP 円周率の算出}
+    \label{fig:p-php}
+\end{figure}
+\begin{figure}[tb]
+    \centering
+        \includegraphics[width=13.5cm,keepaspectratio]{figure/s-py.PNG}
+        \caption{Python3 正規表現}
+        \label{fig:s-py}
+\end{figure}
 
-\begin{lstlisting}[label={fig:p-py}, caption={Python3 円周率の算出}, basicstyle=\ttfamily\footnotesize, frame=single]
-import sys
-
-def Leibniz(n):
-    ans=0
-    for i in range(n):
-        if i%2==0:
-            ans+=1/(2*i+1)
-        else:
-            ans-=1/(2*i+1)
-    ans=ans*4
-    return ans
-Leibniz(int(sys.argv[1]))
-\end{lstlisting}
-
-\begin{lstlisting}[label={fig:p-php}, caption={PHP 円周率の算出}, basicstyle=\ttfamily\footnotesize, frame=single]
-<?php
-function Leibniz(int $n){
-    $ans=0;
-    for ($i=0;$i<$n;$i++){
-        if ($i%2==0){
-            $ans+=1/(2*$i+1);
-        }else{
-            $ans-=1/(2*$i+1);
-        }
-    }
-    return $ans*4;
-}
-$n=$argv[1];
-Leibniz($n);
-?>
-\end{lstlisting}
-
-\clearpage
-
-\begin{lstlisting}[label={fig:s-py}, caption={Python3 正規表現}, basicstyle=\ttfamily\footnotesize, frame=single]
-import re
-import sys
-import fileinput
-
-EXCUTION_TIMES=100000
-def search(string):
-    urlPattern='/(https?:\/\/(www\.)?[0-9a-z\-\.]+:?[0-9]{0,5})/'
-    if re.findall(urlPattern, string):
-        #print(re.findall(urlPattern, string))
-        pass
-for i in range(EXCUTION_TIMES):
-    for line in fileinput.input():
-        search(line)
-\end{lstlisting}
-
-\begin{lstlisting}[label={fig:s-php}, caption={PHP 正規表現}, basicstyle=\ttfamily\footnotesize, frame=single]
-<?php
-$EXCUTION_TIMES=100000;
-function search($str){
-    if(preg_match('/(https?:\/\/(www\.)?[0-9a-z\-\.]+:?[0-9]{0,5})/', $str, $matches)){
-        "echo $matches[0];";
-    }
-}
-for ($i=0;$i<$EXCUTION_TIMES;$i++){
-    $fp = fopen($argv[1], 'r');
-    while (!feof($fp)) {
-        $str = fgets($fp);
-        search($str.'<br>');
-    }
-    fclose($fp);
-}
-?>
-\end{lstlisting}
+\begin{figure}[tb]
+    \centering
+        \includegraphics[width=13.5cm,keepaspectratio]{figure/s-php.PNG}
+        \caption{PHP 正規表現}
+        \label{fig:s-php}
+\end{figure}
