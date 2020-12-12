@@ -1,25 +1,37 @@
 \chapter{計測環境}
 \label{cha:environment}
-\section{コンピューターの構成}
-本研究で使用したコンピューターの構成は下記のものを使用した。
-\begin{itemize}
-  \item microsoft windows 10 home
-  \item CPU Intel(R) Core(TM) i5-8400 CPU @ 2.80GHz
-  \item memory 16GB
-\end{itemize}
 
-\section{Linux仮想環境}
-windows上でWLS2を使用し、Linuxの仮想環境を構築して計測を行った。
-WSL2とはwindows上で仮想マシンを使い、Linuxカーネルが動作する仕組みのことである。
-また、Linuxの操作にはUbuntu\cite{Ubuntu}を使用した。UbuntuはデスクトップLinuxディストリビューションの一つで、Linuxの操作に使用する。
-バージョンは"Ubuntu 20.04.1"を使用した。
+本研究では、\ref{cha:program}~章で述べたプログラムを実行し、スクリプト言語ごとに実行時間の比較検討を行うための計測環境について述べる。
+表~\ref{tbl:environment} に、プログラムを実行する計算機端末の概要を示す。
+本研究では、この計算機端末にインストールされた Windows 上に存在する Windows Subsystem for Linux (WSL2) を用いて
+Linux の仮想環境を構築し、その環境下で作成したプログラムを実行する。
+Linux のディストリビューションは Ubuntu~\cite{Ubuntu} とし、バージョンは 20.04. を用いた。
+また、本研究においてプログラムを実行する際に使用する各種スクリプト言語のバージョンを表~\ref{tbl:language-version} に示す。
+これらは、ともに 2020 年 8 月 29 日時点の最新バージョンである。
 
-\section{プログラミング言語のバージョン}
-プログラミング言語のバージョンは下記のものを使用した。
-\begin{itemize}
-  \item Python 3.8.2
-  \item PHP 7.4.9
-　\item node.js 12.18.3
-  \item ruby 2.7.1
-\end{itemize}
-これらのプログラミング言語のバージョンは2020/8/29時点の最新バージョンである。
+\begin{table}[htbp]
+\begin{center}
+\caption{計測環境}
+\label{tbl:environment}
+\begin{tabular}{|l||l|} \hline
+CPU & Intel Core i5-8400 2.80GHz $\times 6$ \\ \hline
+Memory & 16GB \\ \hline
+Storage & SSD 512GB \\ \hline
+OS & Microsoft Windows 10 Home \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{table}[htbp]
+\begin{center}
+\caption{スクリプト言語のバージョン}
+\label{tbl:language-version}
+\begin{tabular}{|l|l|} \hline
+スクリプト言語 & バージョン \\ \hline \hline
+Python & 3.8.2 \\ \hline
+PHP & 7.4.9 \\ \hline
+Node.js & 12.18.3 \\ \hline
+Ruby & 2.7.1 \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
