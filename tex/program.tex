@@ -47,6 +47,10 @@
 本研究において、Python で実装したものを 図~\ref{fig:f-py} に示す。
 この図の 3 行目に定義した fib() 関数を 7 行目で再起呼び出しを行っている。
 fib() の引数が 0 か 1 になるまで引数に指定される値を 1 ずつ減らしながら fib() を呼び出し続ける。
+また、PHPで実装したものを図~\ref{fig:f-php}に示す。
+この図の 2 行目に定義した fib() 関数を 8 行目で再起呼び出しを行っている。
+二つのプログラムを比較すると言語ごとの細かい違いは存在しているが漸化式の再現方法は同じであることがわかる。
+他の Ruby , Node.js のプログラムについても、漸化式の実装方法は同じになるように注意して行った。
 
 再起呼び出しを使ったプログラムは for 文などのループ処理に比べて、
 関数呼び出し時の負荷が何度も存在するため実行時間が増加する傾向にある。
@@ -112,6 +116,13 @@ fib() の引数が 0 か 1 になるまで引数に指定される値を 1 ず�
     \includegraphics[width=13.5cm,keepaspectratio]{figure/f-py.PNG}
     \caption{Python3 フィボナッチ数列}
     \label{fig:f-py}
+\end{figure}
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=13.5cm,keepaspectratio]{figure/f-py.PNG}
+    \caption{PHP フィボナッチ数列}
+    \label{fig:f-php}
 \end{figure}
 
 \begin{figure}[tb]
