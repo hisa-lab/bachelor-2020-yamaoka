@@ -1,7 +1,12 @@
 \chapter{計測結果}
 \label{cha:result}
-計測はbashのtimeコマンドを使用した。また、以下の計測の時間単位は(s)である。
+
+本章では、\ref{cha:program}~章で説明したプログラムを \ref{cha:environment}~章の環境下で実行した結果について述べる。
+各種プログラムの実行時間は time コマンドを用いて計測した。
+
 \section{バブルソート}
+\label{cha:result:bubble}
+
 ｎ個の数字をソートするバブルソートの実行速度をそれぞれ20回ずつ測定した。
 計20回の結果の平均は表\ref{table:b-average}となった。
 また、計20回の結果の分散は表\ref{table:f-dispersion}となった。
@@ -40,54 +45,50 @@
 また、Python3も十分に速くフィボナッチとや円周率よりと比べると良い結果になっていることがわかる。
 今回計測した中で最も遅かったのはrubyの約23秒だった。
 
-\clearpage
 \begin{table}[tb]
 \centering
-\begin{tabular}{|c||c|c|c|c|}
+\begin{tabular}{|r||c|c|c|c|}
 \hline
-ソートした量&Python3&PHP&node.js&ruby\\ \hline
-100	    &0.018	&0.009	&0.276	&0.030\\ \hline
-1000	&0.018	&0.010	&0.284	&0.030\\ \hline
-10000	&0.076	&0.043	&0.345	&0.054\\ \hline
-100000	&5.934	&3.148	&7.329	&0.030\\ \hline
+要素数 & Python & PHP & Node.js & Ruby \\ \hline \hline
+100	    & 0.018 sec & 0.009 sec	& 0.276	sec & 0.030 sec \\ \hline
+1000	& 0.018 sec	& 0.010 sec	& 0.284	sec & 0.030 sec \\ \hline
+10000	& 0.076 sec	& 0.043 sec	& 0.345	sec & 0.054 sec \\ \hline
+100000	& 5.934 sec	& 3.148	sec & 7.329	sec & 0.030 sec \\ \hline
 \end{tabular}
-\caption{バブルソート 平均}
+\caption{バブルソートの実行時間の平均}
 \label{table:b-average}
 \end{table}
 
 \begin{table}[tb]
 \centering
-\begin{tabular}{|c||c|c|c|c|}
+\begin{tabular}{|r||c|c|c|c|}
 \hline
-ソートした量&Python3&PHP&ruby&node.js\\ \hline
-100     &1.42E-06	&0.00E+00	&2.52E-05	&4.11E-07\\ \hline
-1000	&2.39E-07	&2.61E-07	&2.73E-05	&3.24E-05\\ \hline
-10000	&8.92E-07	&2.53E-07	&2.28E-05	&3.24E-05\\ \hline
-100000	&5.78E-06	&7.87E-07	&2.08E-02	&4.27E-06\\ \hline
+要素数 & Python & PHP & Node.js & Ruby \\ \hline \hline
+100     & 1.42 $\times 10^{-6}$ & 0.00                  & 2.52 $\times 10^{-5}$	& 4.11 $\times 10^{-7}$ \\ \hline
+1000	& 2.39 $\times 10^{-7}$ & 2.61 $\times 10^{-7}$ & 2.73 $\times 10^{-5}$	& 3.24 $\times 10^{-5}$ \\ \hline
+10000	& 8.92 $\times 10^{-7}$ & 2.53 $\times 10^{-7}$ & 2.28 $\times 10^{-5}$ & 3.24 $\times 10^{-5}$ \\ \hline
+100000	& 5.78 $\times 10^{-6}$ & 7.87 $\times 10^{-7}$ & 2.08 $\times 10^{-2}$ & 4.27 $\times 10^{-6}$ \\ \hline
 \end{tabular}
-\caption{バブルソート 分散}
+\caption{バブルソートの実行時間の分散}
 \label{table:b-dispersion}
 \end{table}
 
-\clearpage
 \begin{table}[tb]
 \centering
-\begin{tabular}{|c||c|c|c|c|}
+\begin{tabular}{|r||c|c|c|c|}
 \hline
-
-n番目	&python3	&php	&ruby	&node.js\\ \hline
-1	&0.018	&0.274	&0.010	&0.038\\ \hline
-5	&0.018	&0.272	&0.009	&0.028\\ \hline
-10	&0.018	&0.270	&0.009	&0.028\\ \hline
-15	&0.018	&0.274	&0.009	&0.028\\ \hline
-20	&0.020	&0.274	&0.010	&0.031\\ \hline
-25	&0.040	&0.280	&0.016	&0.030\\ \hline
-30	&0.264	&0.371	&0.088	&0.040\\ \hline
-35	&2.808	&1.302	&0.880	&0.145\\ \hline
-40	&30.599	&11.947	&9.171	&0.149\\ \hline
-
+n 番目 & Python & PHP & Node.js & Ruby \\ \hline \hline
+1	&0.018 sec	&0.274 sec	&0.010 sec	&0.038 sec \\ \hline
+5	&0.018 sec	&0.272 sec	&0.009 sec	&0.028 sec \\ \hline
+10	&0.018 sec	&0.270 sec	&0.009 sec	&0.028 sec \\ \hline
+15	&0.018 sec	&0.274 sec	&0.009 sec	&0.028 sec \\ \hline
+20	&0.020 sec	&0.274 sec	&0.010 sec	&0.031 sec \\ \hline
+25	&0.040 sec	&0.280 sec	&0.016 sec	&0.030 sec \\ \hline
+30	&0.264 sec	&0.371 sec	&0.088 sec	&0.040 sec \\ \hline
+35	&2.808 sec	&1.302 sec	&0.880 sec	&0.145 sec \\ \hline
+40	&30.599	sec &11.947 sec	&9.171 sec	&0.149 sec \\ \hline
 \end{tabular}
-\caption{フィボナッチ数列 平均}
+\caption{フィボナッチ数列の実行時間の平均}
 \label{table:f-average}
 \end{table}
 
@@ -108,11 +109,9 @@ n番目	&python3	&php	&ruby	&node.js\\ \hline
 40	&1.96E-01	&1.79E-01	&4.20E-02	&2.83E-06\\ \hline
 
 \end{tabular}
-\caption{フィボナッチ数列 分散}
+\caption{フィボナッチ数列の実行時間の分散}
 \label{table:f-dispersion}
 \end{table}
-
-\clearpage
 
 \begin{table}[tb]
 \centering
@@ -152,8 +151,6 @@ n番目	&python3	&php	&ruby	&node.js\\ \hline
 \caption{円周率の算出 分散}
 \label{table:p-dispersion}
 \end{table}
-
-\clearpage
 
 \begin{table}[tb]
 \centering
