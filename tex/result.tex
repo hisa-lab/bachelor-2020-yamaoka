@@ -1,52 +1,85 @@
 \chapter{計測結果}
 \label{cha:result}
 
-本章では、\ref{cha:program}~章で説明したプログラムを \ref{cha:environment}~章の環境下で実行した結果について述べる。
-各種プログラムの実行時間は time コマンドを用いて計測した。
+本章では、\ref{cha:program}~章で説明したプログラムを \ref{cha:environment}~章で述べた環境の下で実行した結果について述べる。
+尚、各種プログラムの実行時間は time コマンドを用いて計測した。
 
 \section{バブルソート}
 \label{cha:result:bubble}
 
-ｎ個の数字をソートするバブルソートの実行速度をそれぞれ20回ずつ測定した。
-計20回の結果の平均は表\ref{table:b-average}となった。
-また、計20回の結果の分散は表\ref{table:f-dispersion}となった。
-表\ref{table:b-dispersion}をから分散は非常に小さいことが読み取れる。
-表\ref{table:b-average}を見ると最も早くソートができたのはnode.jsであることがわかる。
-また、rubyは最も遅くnode.jsに比べると約二倍遅い。
-ソートする数字の量が少ないうちはどのプログラムも非常に処理が速いが、処理する数が多くなるにつれて顕著な差が見られた。
+本節では、バブルソートを 4 種類のスクリプト言語で実装したプログラムを実行し、その結果を比較する。
+表~\ref{table:b-average} および表~\ref{table:b-dispersion} に 100, 1000, 10000, 100000 個の要素に対して
+それぞれのスクリプト言語で実装されたバブルソートを 20 回ずつ実行した時の実行時間の平均および分散を示す。
+
+表~\ref{table:b-average} を見ると、4 種類のスクリプト言語で実装されたプログラムの内、
+最も実行時間が短いのは Node.js である事が分かる。特に、要素数が 100000 個の実行時間は
+他のスクリプト言語よりも非常に短くなっており、要素数が大きくなるにつれて Node.js を利用する事の利点が大きくなる。
+また、表~\ref{table:b-dispersion} を見ると、どのスクリプト言語で実装されたプログラムも実行時間の分散は
+非常に小さく、実行時間の観点から見ると安定した動作をしている事が分かる。
 
 \section{フィボナッチ数列}
-ｎ番目のフィボナッチ数を求めるプログラムの実行速度をそれぞれ20回ずつ測定した。
-計20回の結果の平均は表\ref{table:f-average}となった。
-また、計20回の結果の分散は表\ref{table:f-dispersion}となった。
-表\ref{table:f-dispersion}をから分散は非常に小さいことが読み取れる。
-どのスクリプト言語も導出するフィボナッチ数が大きくなるほど実行時間が伸びる傾向にある。
-表\ref{table:f-average}を見ると導出するフィボナッチ数が20回までの間はrubyが最も早く動作することがわかった。
-しかし、導出するフィボナッチ数が増加するのに伴って、node.jsの処理速度の速さが目立つようになった。
-また、40個目のフィボナッチ数を求めるのが最も遅かったのはPython3で約30秒という結果になった。
+\label{cha:result:fibonacci}
 
+本節では、フィボナッチ数を求めるプログラムを 4 種類のスクリプト言語で実装して実行し、その結果を比較する。
+表~\ref{table:f-average} および表~\ref{table:f-dispersion} に、それぞれのスクリプト言語で実装されたプログラムを用いて
+1, 5, 10, 15, 20, 25, 30, 35, 40 番目のフィボナッチ数を 20 回ずつ求めた時の実行時間の平均および分散を示す。
 
-\section{円周率の算出}
-ライプニッツ級数を使った円周率を求めるプログラムの実行速度をそれぞれ20回ずつ測定した。
-どのスクリプト言語も導出した円周率に差異はないが、プログラムの実行時間に差があった。
-計20回の結果の平均は表\ref{table:p-average}となった。
-また、計20回の結果の分散は表\ref{table:p-dispersion}となった。
-表\ref{table:p-dispersion}をから分散は非常に小さいことが読み取れる。
-フィボナッチ数列の結果とは違い、実行した回数に限らずPHPが最も早く処理をすることができた。
-また今回の測定ではpython3は最も遅く、PHPの約200倍の時間がかかったことがわかる。
+表~\ref{table:f-average} を見ると、20 番目までのフィボナッチ数までは Ruby で実装したプログラムの実行時間が
+最も短いが、求めるフィボナッチ数が増加するのに伴って、Node.js の実行時間が最も短くなる事が分かる。
+\ref{cha:result:fibonacci}~節から、バブルソートを実行するプログラムでも要素数が多い領域においては Node.js の
+実行時間の短さが際立っており、処理するデータが大きくなるにつれて Node.js の優位性が目立つ結果となっている。
+逆に、Python で実装したプログラムは求めるフィボナッチ数の数が小さい内は他のスクリプト言語と比較しても十分に
+実行時間が小さいが、求めるフィボナッチ数の数が増加するにつれて実行時間の伸び方が他のスクリプト言語を大きく上回り、
+40 番目のフィボナッチ数を求めた時の実行時間は最も大きくなる結果となった。
+
+表~\ref{table:f-dispersion} を見ると、\ref{cha:result:bubble}~節と同様に、どのスクリプト言語で実装された
+プログラムも実行時間の分散は非常に小さく、実行時間の観点から見ると安定した動作をしている事が分かる。
+
+\section{ライプニッツ級数を用いた円周率の導出}
+\label{cha:result:leibniz}
+
+本節では、ライプニッツ級数を用いた円周率の導出プログラムを 4 種類のスクリプト言語で実装して実行し、その結果を比較する。
+表~\ref{table:p-average} および表~\ref{table:p-dispersion} に、それぞれのスクリプト言語で実装されたプログラムを用いて
+実行回数を 1 回から 1 億回まで変化させた時の実行時間の平均および分散を示す。尚、それぞれのプログラムは 20 回ずつ
+実行し、その平均および分散を用いた。
+
+表~\ref{table:p-average} を見ると、ほとんどの場合において PHP を用いて実装したプログラムの実行時間が最も小さい事が分かる。
+\ref{cha:result:bubble} および \ref{cha:result:fibonacci}~節では、Node.js を用いて実装されたプログラムは
+処理するデータが大きな領域では特に有利になる結果となったが、ライプニッツ級数を用いた円周率の導出プログラムの場合、
+実行回数が 1000 万回を超えると実行時間の伸び方が、他のスクリプト言語と比較しても大きくなっている。
+これらの結果から、似たような処理を行うプログラムであっても、必ずしも実行時間の増加傾向は一致しない事が分かる。
+また、ライプニッツ級数を用いた円周率の導出プログラムでも Python で実装したプログラムは最も実行時間が大きくなっており、
+PHP で実装したプログラムの約 200 倍の実行時間を要している事が分かる。
+
+表~\ref{table:p-dispersion} を見ると、これまでと同様に、どのスクリプト言語で実装された
+プログラムも実行時間の分散は非常に小さく、実行時間の観点から見ると安定した動作をしている事が分かる。
 
 \section{正規表現}
-正規表現を使ったURLを検出するプログラムの実行速度をそれぞれ20回ずつ測定した。
-どのスクリプトも同じようにURLを検出した。それぞれのプログラムの実行時間に差があった。
-計20回の結果の平均は表\ref{table:s-average}となった。
-また、計20回の結果の分散は表\ref{table:s-dispersion}となった。
-表\ref{table:s-dispersion}から分散は非常に小さいことが読み取れる。
-表\ref{table:s-dispersion}からnode.jsとPHPが非常に高速であることが読み取れる。
-また、Python3も十分に速くフィボナッチとや円周率よりと比べると良い結果になっていることがわかる。
-今回計測した中で最も遅かったのはRubyの約23秒だった。
+\label{cha:result:regex}
 
-\begin{table}[tb]
+本節では、正規表現を用いた URL を検出するプログラムを 4 種類のスクリプト言語で実装して実行し、その結果を比較する。
+表~\ref{table:s-average} および表~\ref{table:s-dispersion} に、それぞれのスクリプト言語で実装されたプログラムを用いて
+実行回数を 1 回から 1 万回まで変化させた時の実行時間の平均および分散を示す。尚、それぞれのプログラムは 20 回ずつ
+実行し、その平均および分散を用いた。
+
+表~\ref{table:s-dispersion} を見ると、Node.js と PHP で実装したプログラムの実行時間が非常に小さい事が分かる。
+また、Python で実装したプログラムの実行時間も十分に小さく、\ref{cha:result:fibonacci}~節や \ref{cha:result:leibniz}~節と
+比較すると、良い結果になっている事が分かる。一方で、Ruby で実装したプログラムの実行時間は、今回計測したものの中では
+実行時間がかなり大きくなる結果となった。
+
+表~\ref{table:s-dispersion} を見ると、これまでと同様に、どのスクリプト言語で実装された
+プログラムも実行時間の分散は非常に小さく、実行時間の観点から見ると安定した動作をしている事が分かる。
+
+これらの結果から、実行時間の観点では Node.js や PHP が有利になる傾向がある事が分かる。
+これは、\cite{PHP7} 等の公開情報からも分かるように、これらのスクリプト言語が他と比較しても
+様々なパフォーマンス問題に対して意欲的に取り組んでいるためであると推測される。
+しかし、スクリプト言語毎に得意または不得意な領域は存在するため、必ずしも全てのプログラムで
+同様の傾向が見られるとは限らない事も分かった。
+
+\begin{table}[tbp]
 \centering
+\caption{バブルソートの実行時間の平均}
+\label{table:b-average}
 \begin{tabular}{|r||c|c|c|c|}
 \hline
 要素数 & Python & PHP &Ruby	&Node.js \\ \hline \hline
@@ -55,12 +88,12 @@
 10000	& 0.076 sec	& 0.043 sec	& 0.345	sec & 0.054 sec \\ \hline
 100000	& 5.934 sec	& 3.148	sec & 7.329	sec & 0.030 sec \\ \hline
 \end{tabular}
-\caption{バブルソートの実行時間の平均}
-\label{table:b-average}
 \end{table}
 
-\begin{table}[tb]
+\begin{table}[tbp]
 \centering
+\caption{バブルソートの実行時間の分散}
+\label{table:b-dispersion}
 \begin{tabular}{|r||c|c|c|c|}
 \hline
 要素数 & Python & PHP &Ruby	&Node.js \\ \hline \hline
@@ -69,12 +102,12 @@
 10000	& 8.92 $\times 10^{-7}$ & 2.53 $\times 10^{-7}$ & 2.28 $\times 10^{-5}$ & 3.24 $\times 10^{-5}$ \\ \hline
 100000	& 5.78 $\times 10^{-6}$ & 7.87 $\times 10^{-7}$ & 2.08 $\times 10^{-2}$ & 4.27 $\times 10^{-6}$ \\ \hline
 \end{tabular}
-\caption{バブルソートの実行時間の分散}
-\label{table:b-dispersion}
 \end{table}
 
-\begin{table}[tb]
+\begin{table}[tbp]
 \centering
+\caption{フィボナッチ数列の実行時間の平均}
+\label{table:f-average}
 \begin{tabular}{|r||c|c|c|c|}
 \hline
 n 番目 & Python & PHP &Ruby	&Node.js \\ \hline \hline
@@ -88,15 +121,14 @@ n 番目 & Python & PHP &Ruby	&Node.js \\ \hline \hline
 35	&2.808 sec	&1.302 sec	&0.880 sec	&0.145 sec \\ \hline
 40	&30.599	sec &11.947 sec	&9.171 sec	&0.149 sec \\ \hline
 \end{tabular}
-\caption{フィボナッチ数列の実行時間の平均}
-\label{table:f-average}
 \end{table}
 
-\begin{table}[tb]
+\begin{table}[tbp]
 \centering
-\begin{tabular}{|c||c|c|c|c|}
+\caption{フィボナッチ数列の実行時間の分散}
+\label{table:f-dispersion}
+\begin{tabular}{|r||c|c|c|c|}
 \hline
-
 n 番目	&Python	&PHP	&Ruby	&Node.js\\ \hline \hline
 1	&8.32$\times 10^{-7}$	&2.87$\times 10^{-5}$	&3.66$\times 10^{-7}$	&1.92E-03\\ \hline
 5	&3.58$\times 10^{-7}$	&4.49$\times 10^{-5}$	&1.97$\times 10^{-7}$	&3.45$\times 10^{-7}$\\ \hline
@@ -107,15 +139,14 @@ n 番目	&Python	&PHP	&Ruby	&Node.js\\ \hline \hline
 30	&4.22$\times 10^{-6}$	&1.04$\times 10^{-4}$	&1.04$\times 10^{-6}$	&6.42$\times 10^{-7}$\\ \hline
 35	&1.64$\times 10^{-3}$	&8.70$\times 10^{-4}$	&4.02$\times 10^{-4}$	&1.19$\times 10^{-6}$\\ \hline
 40	&1.96$\times 10^{-1}$	&1.79$\times 10^{-1}$	&4.20$\times 10^{-2}$	&2.83$\times 10^{-6}$\\ \hline
-
 \end{tabular}
-\caption{フィボナッチ数列の実行時間の分散}
-\label{table:f-dispersion}
 \end{table}
 
-\begin{table}[tb]
+\begin{table}[tbp]
 \centering
-\begin{tabular}{|c||c|c|c|c|}
+\caption{ライプニッツ級数を用いた円周率の算出の実行時間の平均}
+\label{table:p-average}
+\begin{tabular}{|r||c|c|c|c|}
 \hline
 実行回数	&Python	&PHP	&Ruby	&Node.js\\ \hline \hline
 1   	    &0.018 sec	&0.010 sec	&0.294 sec	&0.028 sec\\ \hline
@@ -128,13 +159,13 @@ n 番目	&Python	&PHP	&Ruby	&Node.js\\ \hline \hline
 10000000	&1.399 sec	&0.058 sec	&0.437 sec	&0.804 sec\\ \hline
 100000000	&13.646 sec	&0.058 sec	&1.691 sec	&8.300 sec\\ \hline
 \end{tabular}
-\caption{円周率の算出 平均}
-\label{table:p-average}
 \end{table}
 
-\begin{table}[tb]
+\begin{table}[tbp]
 \centering
-\begin{tabular}{|c||c|c|c|c|}
+\caption{ライプニッツ級数を用いた円周率の算出の実行時間の分散}
+\label{table:p-dispersion}
+\begin{tabular}{|r||c|c|c|c|}
 \hline
 実行回数	&Python	&PHP	&Ruby	&Node.js\\ \hline \hline
 1	    	&8.32$\times 10^{-7}$	&3.45$\times 10^{-7}$	&6.60$\times 10^{-5}$	&5.68$\times 10^{-7}$\\ \hline
@@ -146,15 +177,14 @@ n 番目	&Python	&PHP	&Ruby	&Node.js\\ \hline \hline
 1000000		&1.63$\times 10^{-6}$	&8.00$\times 10^{-7}$	&2.76$\times 10^{-4}$	&1.61$\times 10^{-6}$\\ \hline
 10000000	&2.19$\times 10^{-3}$	&2.17$\times 10^{-6}$	&2.73$\times 10^{-4}$	&1.45$\times 10^{-3}$\\ \hline
 100000000	&3.99$\times 10^{-2}$	&2.17$\times 10^{-6}$	&1.94$\times 10^{-3}$	&2.16$\times 10^{-2}$\\ \hline
-
 \end{tabular}
-\caption{円周率の算出 分散}
-\label{table:p-dispersion}
 \end{table}
 
-\begin{table}[tb]
+\begin{table}[tbp]
 \centering
-\begin{tabular}{|c||c|c|c|c|}
+\caption{正規表現の実行時間の平均}
+\label{table:s-average}
+\begin{tabular}{|r||c|c|c|c|}
 \hline
 実行回数	&Python	&PHP	&Ruby	&Node.js\\ \hline \hline
 1	    &0.021 sec	&0.009 sec	&0.269 sec	&0.038 sec\\ \hline
@@ -162,15 +192,14 @@ n 番目	&Python	&PHP	&Ruby	&Node.js\\ \hline \hline
 100	    &0.043 sec	&0.014 sec	&0.490 sec	&0.054 sec\\ \hline
 1000	&0.243 sec	&0.062 sec	&2.603 sec	&0.114 sec\\ \hline
 10000	&2.370 sec	&0.532 sec	&23.386 sec	&0.564 sec\\ \hline
-
 \end{tabular}
-\caption{正規表現 平均}
-\label{table:s-average}
 \end{table}
 
-\begin{table}[tb]
+\begin{table}[tbp]
 \centering
-\begin{tabular}{|c||c|c|c|c|}
+\caption{正規表現の実行時間の分散}
+\label{table:s-dispersion}
+\begin{tabular}{|r||c|c|c|c|}
 \hline
 実行回数	&Python	&PHP	&Ruby	&Node.js\\ \hline \hline
 1	    &1.42$\times 10^{-6}$	&0.00               	&2.52$\times 10^{-5}$	&4.11$\times 10^{-7}$\\ \hline
@@ -179,6 +208,4 @@ n 番目	&Python	&PHP	&Ruby	&Node.js\\ \hline \hline
 1000	&5.78$\times 10^{-6}$	&7.87$\times 10^{-7}$	&2.08$\times 10^{-2}$	&4.27$\times 10^{-6}$\\ \hline
 10000	&4.25$\times 10^{-3}$	&7.92$\times 10^{-5}$	&5.88$\times 10^{-1}$	&7.09$\times 10^{-5}$\\ \hline
 \end{tabular}
-\caption{正規表現 分散}
-\label{table:s-dispersion}
 \end{table}
